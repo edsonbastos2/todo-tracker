@@ -13,23 +13,7 @@
         />
       </div>
       <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-            <section>
-                <strong>{{tempoDecorrido}}</strong>
-            </section>
-            <button class="button" @click="startTime">
-                <span class="icon">
-                    <i class="fas fa-play"></i>
-                </span>
-                <span>play</span>
-            </button>
-            <button class="button" @click="finalyTime">
-                <span class="icon">
-                    <i class="fas fa-stop"></i>
-                </span>
-                <span>stop</span>
-            </button>
-        </div>
+        <Temporizador/>
       </div>
     </div>
   </div>
@@ -37,29 +21,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
+import Temporizador from './Temporizador.vue'
 export default defineComponent({
   name: "FormularioTempo",
-  data() {
-    return {
-        tempo:0
-    }
-  },
-  computed: {
-    tempoDecorrido():string {
-        return new Date(this.tempo * 1000).toISOString().substr(11,8)
-    }
-  },
-  methods:{
-    startTime() {
-        setInterval(() => {
-            this.tempo += 1
-        },1000)
-    },
-    finalyTime() {
-        console.log('finalizou');
-    }
+  components:{
+    Temporizador
   }
+  
 });
 </script>
 
