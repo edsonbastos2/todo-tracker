@@ -1,7 +1,8 @@
 <template>
     <header>
-        <h1>
-            <img src="@/assets/logo.png" alt="">
+        <h1 class="logo">
+            <img src="@/assets/iw.png" alt="">
+            iwtraining
         </h1>
     </header>
 </template>
@@ -22,12 +23,19 @@ export default defineComponent({
 <style scoped>
 header {
   padding: 1rem;
-  background: #0d3b66;
-  width: 100%;
+  background: #4158A6;
   height: 100vh;
 }
+.logo {
+    display: flex;
+    align-items: center;
+    color:#fff;
+  }
 @media only screen and (max-width: 768px) {
   header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2.5rem;
     height: auto;
   }
