@@ -1,9 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" :class="{dark: dark}">
     <div class="column is-2">
-      <BarraLateral />
+      <BarraLateral @modoDark="modoDark" />
     </div>
-    <div class="column is-10">
+    <div class="column is-10 conteudo">
       <Formulario @salvarEmTarefas="salvaNaLista" />
       <div class="tarefa">
         <div v-if="isAcitve" class="notification is-danger">
@@ -15,6 +15,9 @@
           :key="index"
           :tarefa="tarefa"
         />
+        <Box v-if="!tarefas.length">
+          Hoje você não esta produtivo :(
+        </Box>
       </div>
     </div>
   </main>
@@ -26,17 +29,21 @@ import BarraLateral from "@/components/BarraLateral.vue";
 import Formulario from "@/components/Formulario.vue";
 import TarefaVue from "./components/Tarefa.vue";
 import Tarefa from "./interface/Tarefa";
+import Box from './components/Box.vue'
+
 export default defineComponent({
   name: "App",
   components: {
     BarraLateral,
     Formulario,
     TarefaVue,
+    Box
   },
   data() {
     return {
       tarefas: [] as Tarefa[],
-      isAcitve: false
+      isAcitve: false,
+      dark: false
     };
   },
   methods: {
@@ -52,13 +59,31 @@ export default defineComponent({
 
     close() {
       this.isAcitve = false
+    },
+    modoDark($event: boolean) {
+      this.dark = $event
+      console.log($event)
     }
   },
 });
 </script>
 
-<style scoped>
+<style>
 .tarefa {
   padding: 1.25rem;
+}
+
+main {
+  --bg-primario: #fff;
+  --texto-primario: #000;
+}
+
+main.dark {
+  --bg-primario: #2b2d42;
+  --texto-primario: #ddd;
+}
+
+.conteudo {
+  background-color: var(--bg-primario);
 }
 </style>
