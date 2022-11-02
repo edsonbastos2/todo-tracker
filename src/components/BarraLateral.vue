@@ -5,8 +5,10 @@
             iwtraining
         </h1>
         <div class="modo-dark">
-          <button class="btn-modo-dark" @click="modoDark">
+          <button v-if="!isMobile" class="btn-modo-dark" @click="modoDark">
             {{isActive ? 'Desativar dark' : 'Ativar dark'}}
+          </button>
+          <button v-else class="btn-modo-dark" @click="modoDark">
           </button>
         </div>
     </header>
@@ -21,6 +23,11 @@ export default defineComponent({
     data() {
       return {
         isActive: false
+      }
+    },
+    computed:{
+      isMobile() {
+        return screen.width <= 600
       }
     },
     methods: {
@@ -60,6 +67,13 @@ header {
   border-radius: 8px;
   cursor: pointer;
   width: 110px;
+}
+
+@media(max-width: 600px) {
+  .btn-modo-dark {
+    width: fit-content;
+    border: none;
+  }
 }
 .btn-modo-dark::before {
   content: '';

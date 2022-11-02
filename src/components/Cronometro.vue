@@ -23,8 +23,8 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .cronometro {
-  color: var(--texto-primario);
+  color: #000;
 }
 </style>

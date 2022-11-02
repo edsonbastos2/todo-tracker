@@ -86,4 +86,10 @@ main.dark {
 .conteudo {
   background-color: var(--bg-primario);
 }
+
+@media(max-width: 600px) {
+  .conteudo {
+    height: 100vh;
+  }
+}
 </style>
